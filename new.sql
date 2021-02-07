@@ -31,3 +31,22 @@ WHERE name LIKE '%OO%';
 
 SELECT name FROM world
 WHERE name LIKE '%a%a%a%';
+
+SELECT name FROM world
+ WHERE name LIKE '_t%'
+ORDER BY name;
+
+SELECT name FROM world
+ WHERE name LIKE '%o__o%';
+ 
+ SELECT name FROM world
+ WHERE name LIKE '____';
+
+  SELECT name
+  FROM world
+ WHERE name LIKE capital;
+
+  SELECT name 
+ FROM world 
+ WHERE capital LIKE '% City%';
+
