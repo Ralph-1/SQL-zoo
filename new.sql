@@ -94,6 +94,42 @@ WHERE GDP >= 1000000000000;
 
 SELECT name, capital 
   FROM world
- WHERE LENGTH(name) = LENGTH(capital);~
+ WHERE LENGTH(name) = LENGTH(capital);
 
+SELECT name, capital FROM world
+WHERE LEFT(name, 1) = LEFT(capital, 1) 
+AND name <> capital;
 
+SELECT name FROM world
+WHERE name LIKE '%a%' AND
+name LIKE '%e%' AND
+name LIKE '%i%' AND
+name LIKE '%o%' AND
+name LIKE '%u%' AND
+name NOT LIKE '% %';
+
+SELECT name FROM world
+WHERE population >
+(SELECT population FROM world
+WHERE name='Russia');
+
+SELECT name FROM world
+WHERE continent = 'Europe' 
+AND GDP/population > (SELECT GDP/population FROM world WHERE name = 'United Kingdom')
+
+SELECT name, continent FROM world
+WHERE continent IN (SELECT continent FROM world WHERE name = 'Argentina' OR name = 'Australia')
+ORDER BY name
+
+SELECT name, population FROM world
+WHERE population > (SELECT population FROM world WHERE name = 'Canada') 
+AND population < (SELECT population FROM world WHERE name = 'Poland')
+
+SELECT name, CONCAT(ROUND(population/(SELECT population FROM world WHERE name = 'Germany') * 100, 0), '%') 
+FROM world
+WHERE continent = 'Europe'
+
+SELECT SUM(population)
+FROM world
+
+SELECT DISTINCT continent FROM world
